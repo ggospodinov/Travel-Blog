@@ -1,30 +1,54 @@
+import { useContext } from 'react';
+import { useHistory } from "react-router-dom";
+
+
+import * as authService from '../../../../services/authService';
+import { AuthContext } from '../../../../contexts/AuthContext'
+
 import background from "./../../../../images/image3.jpg"
 
 function Register(){
+	const historyRegister= useHistory()
+
+	const { login } = useContext(AuthContext);
+
+	const registerSubmitHandler = (e) => {
+        e.preventDefault();
+
+        let { email,username, password } = Object.fromEntries(new FormData(e.currentTarget));
+
+        authService.register(email,username, password)   
+            .then(authData => {
+                login(authData);
+                
+                historyRegister.push("/themes")
+            });
+    }
+
  return(
-<body class="form-v9">
-	<div class="page-content">
-		<div class="form-v9-content" style={{backgroundImage: `url(${background}`}}>
-			<form class="form-detail" action="#" method="post">
+<body className="form-v9">
+	<div className="page-content">
+		<div className="form-v9-content" style={{backgroundImage: `url(${background}`}}>
+			<form className="form-detail" action="/register" method="POST"  onSubmit={registerSubmitHandler}>
 				<h2>Registration Form</h2>
-				<div class="form-row-total">
-					<div class="form-row">
-						<input type="text" name="full-name" id="full-name" class="input-text" placeholder="Your Name" required/>
+				<div className="form-row-total">
+					<div className="form-row">
+						<input type="text" name="username" id="username" className="input-text" placeholder="Your Username" required/>
 					</div>
-					<div class="form-row">
-						<input type="text" name="your-email" id="your-email" class="input-text" placeholder="Your Email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"/>
-					</div>
-				</div>
-				<div class="form-row-total">
-					<div class="form-row">
-						<input type="password" name="password" id="password" class="input-text" placeholder="Your Password" required/>
-					</div>
-					<div class="form-row">
-						<input type="password" name="comfirm-password" id="comfirm-password" class="input-text" placeholder="Comfirm Password" required/>
+					<div className="form-row">
+						<input type="text" name="email" id="email" className="input-text" placeholder="Your Email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"/>
 					</div>
 				</div>
-				<div class="form-row-last">
-					<input type="submit" name="register" class="register" value="Register"/>
+				<div className="form-row-total">
+					<div className="form-row">
+						<input type="password" name="password" id="password" className="input-text" placeholder="Your Password" required/>
+					</div>
+					<div className="form-row">
+						<input type="password" name="comfirm-password" id="comfirm-password" className="input-text" placeholder="Comfirm Password" required/>
+					</div>
+				</div>
+				<div className="form-row-last">
+					<input type="submit" name="register" className="register" value="Register"/>
 				</div>
 			</form>
 		</div>
