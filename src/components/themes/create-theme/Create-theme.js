@@ -1,34 +1,65 @@
-import { useState } from 'react'
+// import { useState } from 'react'
+import  * as servicesThemes from '../../../services/servicesThemes'
+import { AuthContext } from '../../../contexts/AuthContext'
+import { useContext, } from 'react'
+import { useHistory } from 'react-router-dom'
 import styles from './Create-theme.module.css'
 
-function CreateTheme(){
+const CreateTheme =  () =>{
+  const {user} = useContext(AuthContext);
+  const createHystory= useHistory();
 
-  const [file, setFile] = useState(null);
-  const [images, setImages] = useState([]);
+  const onPostCreate =(e)=>{
 
-  const HendlePic =(e) =>{
-      const pic = e.target.files[0];
-      setFile(pic);
-      console.log(pic)
+    e.preventDefault();
+    let formData = new FormData(e.currentTarget);
+
+    let themeName = formData.get('themeName');
+    let postText = formData.get('postText');
+    let imageUrl = formData.get('imageUrl');
+    
+    console.log(themeName);
+    console.log(postText);
+    console.log(imageUrl)
+
+
+    servicesThemes.createPost({
+          themeName,
+          postText,
+          imageUrl
+    })
+    .then(result=>{createHystory.push('/themes')
+
+    })
+
   }
-   const HendleAppUpload =() =>{
-         const formData= new FormData();
-       
-         formData.append('file', file);
-         formData.append('upload_preset', 'x3vaqe9r');
-         fetch('https://api.cloudinary.com/v1_1/dkyjehujy/upload',{
-           method: 'POST',
-           body: JSON.stringify({formData} )    
-         })
-         .then((res) => res.json())
-         .then(res=>console.log(res))
-         .then((res)=> {
-           setImages((images) =>[...images, res.secure_url])
-         })
-         .catch((err)=> console.log(err))
 
-   }
-   console.log(images)
+  // const [file, setFile] = useState(null);
+  // const [images, setImages] = useState([]);
+
+  // const HendlePic =(e) =>{
+  //     const pic = e.target.files[0];
+  //     setFile(pic);
+  //     console.log(pic)
+  // }
+  //  const HendleAppUpload =() =>{
+  //        const formData= new FormData();
+       
+  //        formData.append('file', file);
+  //        formData.append('upload_preset', 'x3vaqe9r');
+  //        fetch('https://api.cloudinary.com/v1_1/dkyjehujy/upload',{
+  //          method: 'POST',
+  //          body: JSON.stringify({formData} )    
+  //        })
+  //        .then((res) => res.json())
+  //        .then(res=>console.log(res))
+  //        .then((res)=> {
+  //          setImages((images) =>[...images, res.secure_url])
+  //        })
+  //        .catch((err)=> console.log(err))
+
+  //  }
+  //  console.log(images)
 
   
  return(
@@ -38,7 +69,7 @@ function CreateTheme(){
       <div className={styles.headerbackground}>
         <span>New Theme</span>
       </div>
-      <form     enctype="multipart/form-data">
+      <form     enctype="multipart/form-data" onSubmit={onPostCreate} method="POST">
         <div className={styles.newthemetitle}>
           <label for="themeName">Title <span className="red">*</span></label>
           <input type="text" name="themeName" id="themeName"/>
@@ -52,14 +83,15 @@ function CreateTheme(){
         
         
         <div className={styles.newthemetitle}>
-          <label for="image">Upload image<span className="red">*</span></label>
-          <input type="file"  onChange={HendlePic} />
-          <button onClick={HendleAppUpload}  >Upload</button>
+          <label for="image">Image<span className="red">*</span></label>
+          <input type="text" name="imageUrl" id="image" placeholder="Image" />
+          {/* <input type="file" name ="image" /> */}
+          {/* <button  >Upload</button> */}
           </div>
           <div>
-            {images.map((image)=>(
+            {/* {images.map((image)=>(
               <img src={image} alt=''/>
-            ))}
+            ))} */}
           </div>
         <div className={styles.newthemebuttons}>
           <button  type="button"  className="cancel">Cancel</button>

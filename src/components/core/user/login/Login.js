@@ -2,41 +2,65 @@ import { Link } from "react-router-dom"
 import { useHistory } from "react-router";
 import background from "./../../../../images/image1.jpg"
 import  * as authService from "../../../../services/authService"
-import { useContext } from 'react';
+import { useContext,useState} from 'react';
 import { AuthContext } from "../../../../contexts/AuthContext"
+// import {login} from "../../../../firebase"
 
 
-function Login(){
-	const { login } = useContext(AuthContext);
+const Login =()=> {
+	const { loginUser } = useContext(AuthContext);
+	//  const { currentUser} = useContext(AuthContext);
+	 const [loading, setloading] = useState(false);
 	const historyLogin = useHistory()
+
+	// const emailRef = useRef();
+	// const passwordRef = useRef();
+	
+	
+	//   async function onLoginHandler(e){
+	// 	e.preventDefault();
+    //      try{
+	// 		 setloading(true);
+	// 		await login(emailRef.current.value, passwordRef.current.value)
+                
+			
+	// 		historyLogin.push("/themes");
+			 
+	// 		}catch{
+	// 			alert('Error!')
+	// 		}
+	// 		setloading(false);
+
+	// }
 
 	const onLoginHandler = (e) => {
         e.preventDefault();
 
         let formData = new FormData(e.currentTarget);
 
-        let email = formData.get('email');
+        let login = formData.get('login');
         let password = formData.get('password');
 
-		console.log(email);
+		console.log(login);
 		console.log(password)
 
-         authService.login(email, password)
-            .then((authData) => {
-                 login(authData);
+          authService.loginIn(login, password)
+             .then((authData) => {
+                 loginUser(authData);
+				 
 			
 				 historyLogin.push("/themes");
 			
 				})       
             .catch(err => {
                  // TODO: show notification
-                 console.log(err);
-            });
+               console.log(err);
+           });
     }
 
 
  return(  
-     <>  
+ <>  
 <div className="limiter">
 		<div className="container-login100">
 			<div className="wrap-login100">
@@ -46,7 +70,7 @@ function Login(){
 					</span>
 					
 					<div className="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-						<input id="first-name" className="input100" type="text" name="email" placeholder="User email"/>
+						<input id="first-name" className="input100" type="text" name="login" placeholder="User email"/>
 						<span className="focus-input100"></span>
 					</div>
 					<div className="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">

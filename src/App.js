@@ -11,35 +11,57 @@ import Register from './components/core/user/register/Register';
 import Theme from './components/themes/Theme'
 import CreateTheme from './components/themes/create-theme/Create-theme';
 import Profile from './components/core/user/profile/Profile';
-import { useState } from 'react';
+//  import { useState } from 'react';
+import Logout from './components/core/user/logout/Logout';
+// import {useAuth} from './firebase'
+import useLocalStorage from './hooks/useLocalStorage';
 
+const initialAuthState = {
+      
+  usertoken: ''
+ };
 
 
 function App() {
 
-  const initialAuthState = {
-    _id: '',
-    email: '',
-    accessToken: '',
-  };
-  
-  const [user, setUser] = useState({});
+  const [user, setUser] = useLocalStorage('user', initialAuthState);
 
-  const login = (authData) => {
+
+ 
+
+
+   const loginUser= (authData) => {
     setUser(authData);
   }
+
+  const logout = () => {
+    setUser(initialAuthState);
+  };
+
+
+  // const currentUser =useAuth();
+  // // const initialAuthState = {
+     
+  // //   objectId: '',
+  // //   userToken: ''
+  // // };
+  
+ 
+
+
+  //  const loginIn = (authData) => {
+  //   setUser(authData);
+  // }
+
+  //  const logout = () => {
+  //  currentUser(initialAuthState);
+   
+  //  };
  
   
-//   const routes = {
-//     'themes': <ViewImg  />,
-//     // 'games': <GameCatalog navigationChangeHandler={navigationChangeHandler} />,
-//     // 'create-game': <CreateGame />,
-//     // 'login': <Login />,
-//     // 'register': <Register />,
-//     // 'details': <GameDetails id={argument} />
-// }
+
   return (
- <AuthContext.Provider value={{user, login}}>
+ <AuthContext.Provider value={{user,loginUser, logout}}>
 
   <>
     <Header/>
@@ -49,26 +71,14 @@ function App() {
                     <Route path="/" exact component={Home} />
                     <Route path="/themes"  component={AllThemes} />
                     <Route path="/login"  component={Login} />
+                    <Route path="/logout"  component={Logout}  />
                     <Route path="/register"  component={Register} />
                     <Route path="/theme"  component={Theme} />
                     <Route path="/create-theme"  component={CreateTheme} />
                     <Route path="/profile"  component={Profile} />
 
 
-                    {/* <Route path="/games" exact component={GameCatalog} />
-                    <Route path="/create-game" component={CreateGame} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/games/:gameId" component={GameDetails} />
-                    <Route path="/custom">
-                    <h2>Custom Page</h2>
-                    <p>dasklfjasldf </p>
-                    </Route>
-                    <Route path="/logout" render={(props) => {
-                      console.log('Logged Out!!!');
-                      
-                      return <Redirect to="/" />
-                    }} />  */}
+                   
                 </Switch>
     <Footer/>
 </>

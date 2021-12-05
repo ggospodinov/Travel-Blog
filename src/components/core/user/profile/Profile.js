@@ -1,8 +1,15 @@
+import {useContext} from "react";
  import styles from './Profile.module.css'
+ import { AuthContext } from "../../../../contexts/AuthContext"
  import { FcPhone, FcBusinessman, FcAddressBook } from "react-icons/fc";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from "react";
+
+
 function Profile(){
+    const { currentUser} = useContext(AuthContext);
+    console.log(currentUser)
+
+    
  return(
 <div className="container d-flex justify-content-center align-items-center">
     <div className={styles.card}>
@@ -16,8 +23,8 @@ function Profile(){
                 {/* <div className="d-flex flex-row align-items-center"> */}
                     {/* <div className={styles.box}> <span className={styles.dots}></span> </div> */}
                     <div className="d-flex flex-column ml-8">
-                        <h4 className="mb-0 font-weight-bold"><FcBusinessman/>username</h4>
-                        <h4 className="mb-0 font-weight-bold"><FcAddressBook/>vlocks@gmail.com</h4> 
+                        <h4 className="mb-0 font-weight-bold"><FcBusinessman/>{currentUser?.username}</h4>
+                        <h4 className="mb-0 font-weight-bold"><FcAddressBook/>{currentUser?.email}</h4> 
                         <h4 className="mb-0 font-weight-bold"><FcPhone/>phone</h4>
                     </div>
                 {/* </div> */}

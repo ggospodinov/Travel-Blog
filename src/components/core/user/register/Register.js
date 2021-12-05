@@ -1,5 +1,6 @@
-import { useContext } from 'react';
+import { useContext,useState } from 'react';
 import { useHistory } from "react-router-dom";
+// import {signup} from "../../../../firebase"
 
 
 import * as authService from '../../../../services/authService';
@@ -7,19 +8,44 @@ import { AuthContext } from '../../../../contexts/AuthContext'
 
 import background from "./../../../../images/image3.jpg"
 
-function Register(){
+   function Register(){
 	const historyRegister= useHistory()
+	
 
-	const { login } = useContext(AuthContext);
 
-	const registerSubmitHandler = (e) => {
+	// const emailRef = useRef();
+	// const passwordRef = useRef();
+	// const usernameRef = useRef();
+
+ 	// const {currentUser} = useContext(AuthContext);
+	const [loading, setloading] = useState(false);
+
+    // async function registerSubmitHandler(e){
+	// 	e.preventDefault();
+    //      try{
+	// 		 setloading(true)
+	// 		 const user =await signup(emailRef.current.value, usernameRef.current.value, passwordRef.current.value)
+	// 		 console.log(user)
+				 
+	// 			 historyRegister.push("/themes")
+			
+	// 		}catch{
+	// 			alert('Error! This email already exists')
+	// 		}
+	// 		setloading(false);
+
+	// }
+	
+	 const { loginUser } = useContext(AuthContext);
+
+ const registerSubmitHandler = (e) => {
         e.preventDefault();
 
         let { email,username, password } = Object.fromEntries(new FormData(e.currentTarget));
 
         authService.register(email,username, password)   
-            .then(authData => {
-                login(authData);
+           .then(authData => {
+               loginUser(authData);
                 
                 historyRegister.push("/themes")
             });

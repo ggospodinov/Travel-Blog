@@ -13,7 +13,7 @@ function Header()
       <Link className="nav-link" to="/create-theme">New Theme</Link>
     </li>
     <li className="nav-item">
-      <Link className="nav-link" to="/profile">{user.email}</Link>
+      <Link className="nav-link" to="/profile">{user?.email}</Link>
     </li>
     <li className="nav-item">
       <Link className="nav-link" to="/logout">Logout</Link>
@@ -60,10 +60,14 @@ function Header()
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
              
-             {user.email
+            
+             {/* {userNavigation}
+             {guestNavigation} */}
+             
+             {user?.email
              ?userNavigation
              :guestNavigation }
-            
+             {/* } */}
             </ul>
           </div>
         </div>
