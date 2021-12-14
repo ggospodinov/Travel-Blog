@@ -1,11 +1,13 @@
 import { useContext } from 'react';
 import { Link} from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
+import { logout } from '../../services/authService';
+// import { loginIn } from '../../services/authService';
 // import Theme from '../themes/Theme'
 function Header()
 {
 
-  const { user } = useContext(AuthContext);
+  const {user, loginUser, logout } = useContext(AuthContext);
   
     let userNavigation=(
       <>
@@ -64,7 +66,7 @@ function Header()
              {/* {userNavigation}
              {guestNavigation} */}
              
-             {user?.email
+             { user?.email 
              ?userNavigation
              :guestNavigation }
              {/* } */}

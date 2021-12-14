@@ -44,12 +44,16 @@ const Login =()=> {
 		console.log(login);
 		console.log(password)
 
+
+
           authService.loginIn(login, password)
              .then((authData) => {
-                 loginUser(authData);
+              loginUser(authData);
+				 
+
+					 historyLogin.push("/themes");
 				 
 			
-				 historyLogin.push("/themes");
 			
 				})       
             .catch(err => {

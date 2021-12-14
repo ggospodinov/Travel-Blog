@@ -1,4 +1,7 @@
+import { Link} from 'react-router-dom';
+
 function Theme({
+
     themecard
 }){
 
@@ -40,6 +43,10 @@ return(
                                 <li><a href="!#">TemplateMo</a></li> */}
                               {/* </ul> */}
                             {/* </div> */}
+                            <li className="button">
+                              <Link className="button" to={`details/${themecard.objectId}`}><h5>Details
+                              </h5></Link>
+                              </li>
                           </div>
                         </div>
                       </div>

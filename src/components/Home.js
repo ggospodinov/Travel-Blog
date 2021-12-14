@@ -1,4 +1,4 @@
-import AllThemes from './themes/All-themes'
+import AllThemes from './themes/all-Themes/All-themes'
 // import ViewImg from './core/ViewImg/ViewImg'
 import { Link } from 'react-router-dom'
 function Home(){

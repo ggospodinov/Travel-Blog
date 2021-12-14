@@ -84,7 +84,7 @@ const CreateTheme =  () =>{
         
         <div className={styles.newthemetitle}>
           <label for="image">Image<span className="red">*</span></label>
-          <input type="text" name="imageUrl" id="image" placeholder="Image" />
+          <input type="text" name="imageUrl" id="imageUrl" placeholder="Image" />
           {/* <input type="file" name ="image" /> */}
           {/* <button  >Upload</button> */}
           </div>

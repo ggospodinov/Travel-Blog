@@ -41,9 +41,9 @@ import background from "./../../../../images/image3.jpg"
  const registerSubmitHandler = (e) => {
         e.preventDefault();
 
-        let { email,username, password } = Object.fromEntries(new FormData(e.currentTarget));
+        let {  email,username, password } = Object.fromEntries(new FormData(e.currentTarget));
 
-        authService.register(email,username, password)   
+        authService.register( email,username, password )   
            .then(authData => {
                loginUser(authData);
                 
@@ -59,10 +59,10 @@ import background from "./../../../../images/image3.jpg"
 				<h2>Registration Form</h2>
 				<div className="form-row-total">
 					<div className="form-row">
-						<input type="text" name="username" id="username" className="input-text" placeholder="Your Username" required/>
+						<input type="text" name="email" id="email" className="input-text" placeholder="Your Email" required />
 					</div>
 					<div className="form-row">
-						<input type="text" name="email" id="email" className="input-text" placeholder="Your Email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"/>
+						<input type="text" name="username" id="username" className="input-text" placeholder="Your Username" required/>
 					</div>
 				</div>
 				<div className="form-row-total">

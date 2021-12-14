@@ -1,7 +1,7 @@
-import Theme from './Theme'
-import ResetTheme from './ResetTheme';
+import Theme from '../Theme'
+import ResetTheme from '../resetPost/ResetTheme';
 import {useEffect, useState} from 'react'
-import * as themesService from '../../services/servicesThemes';
+import * as themesService from '../../../services/servicesThemes';
 import styles from './All-themes.module.css';
 // import Pagenation from '../../pagenations';
 

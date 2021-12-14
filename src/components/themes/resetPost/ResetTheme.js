@@ -1,6 +1,6 @@
 // import Theme from "./Theme"
 import {useState, useEffect} from 'react'
-import * as themesService from '../../services/servicesThemes';
+import * as themesService from '../../../services/servicesThemes';
 import ResetPostCard from './ResetPostCard'
 
 function ResetTheme(){
@@ -13,6 +13,7 @@ function ResetTheme(){
             setPosts(result);
         })
 }, []);
+
     
     return(
 <div className="col-lg-4">
@@ -25,15 +26,13 @@ function ResetTheme(){
                         <ul>
 
                           {posts.map((x)=>(<ResetPostCard key={x._id}   resetcard={x}/> ))}
-                         
+
+                          
+                           
                           {/* <li><a href="post-details.html">
-                            <h5>Suspendisse et metus nec libero ultrices varius eget in risus</h5>
-                            <span>May 28, 2020</span>
-                          </a></li>
-                          <li><a href="post-details.html">
                             <h5>Swag hella echo park leggings, shaman cornhole ethical coloring</h5>
                             <span>May 14, 2020</span>
-                          </a></li> */}
+                          </a></li>  */}
                         </ul>
                       </div>
                     </div>

@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom";
     const historyLogout = useHistory();
 
     useEffect(() => {
-        authService.logout(user.usertoken)
+        authService.logout(user.authcookie)
             .then(() => {
                 logout();
                 historyLogout.push("/")

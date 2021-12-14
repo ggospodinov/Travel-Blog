@@ -6,8 +6,8 @@ import {useContext} from "react";
 
 
 function Profile(){
-    const { currentUser} = useContext(AuthContext);
-    console.log(currentUser)
+    const { user} = useContext(AuthContext);
+    console.log(user)
 
     
  return(
@@ -23,9 +23,9 @@ function Profile(){
                 {/* <div className="d-flex flex-row align-items-center"> */}
                     {/* <div className={styles.box}> <span className={styles.dots}></span> </div> */}
                     <div className="d-flex flex-column ml-8">
-                        <h4 className="mb-0 font-weight-bold"><FcBusinessman/>{currentUser?.username}</h4>
-                        <h4 className="mb-0 font-weight-bold"><FcAddressBook/>{currentUser?.email}</h4> 
-                        <h4 className="mb-0 font-weight-bold"><FcPhone/>phone</h4>
+                        <h4 className="mb-0 font-weight-bold"><FcBusinessman/>{user?.username}</h4>
+                        <h4 className="mb-0 font-weight-bold"><FcAddressBook/>{user?.email}</h4> 
+                        {/* <h4 className="mb-0 font-weight-bold"><FcPhone/>phone</h4> */}
                     </div>
                 {/* </div> */}
                 <div className={styles.subscribe}> <span className="d-block">You have subscribed to our premium account since <b>July 8,2020</b></span>  </div>
