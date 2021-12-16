@@ -3,7 +3,6 @@ import { Route ,Switch } from 'react-router-dom';
 import Header from "./components/core/Header";
 import Footer from "./components/core/Footer";
 import { AuthContext } from './contexts/AuthContext';
-// import ViewImg from "./components/core/ViewImg/ViewImg";
 import Home from "./components/Home";
 import AllThemes from './components/themes/all-Themes/All-themes';
 import Login from './components/core/user/login/Login';
@@ -11,29 +10,27 @@ import Register from './components/core/user/register/Register';
 import Theme from './components/themes/Theme'
 import CreateTheme from './components/themes/create-theme/Create-theme';
 import Profile from './components/core/user/profile/Profile';
-// import { useState } from 'react';
 import Logout from './components/core/user/logout/Logout';
-// import {useAuth} from './firebase'
 import useLocalStorage from './hooks/useLocalStorage';
 import ThemesDetails from './components/themes/oneThemesDetals/Themes-Details'
 
-const initialAuthState = {
-      
-  
-  usertoken :' ',
 
+
+const initialAuthState = {
+ 
+  objectId:'',
+  
  };
 
- console.log(initialAuthState)
-
-
 function App() {
+  
+   console.log(initialAuthState)
 
-  //const [user, setUser] = useLocalStorage('user', initialAuthState);
+  
   const [user, setUser] = useLocalStorage('user', initialAuthState);
 
 
- 
+ console.log(user['user-token'])
 
 
    const loginUser= (authData) => {
@@ -46,7 +43,7 @@ function App() {
  
 
   return (
- <AuthContext.Provider value={{user,loginUser, logout}}>
+ <AuthContext.Provider value={{ user,loginUser, logout}}>
 
   <>
     <Header/>

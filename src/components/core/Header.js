@@ -1,13 +1,12 @@
 import { useContext } from 'react';
 import { Link} from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
-import { logout } from '../../services/authService';
-// import { loginIn } from '../../services/authService';
-// import Theme from '../themes/Theme'
+
+
 function Header()
 {
 
-  const {user, loginUser, logout } = useContext(AuthContext);
+  const {user } = useContext(AuthContext);
   
     let userNavigation=(
       <>
@@ -61,10 +60,6 @@ function Header()
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
-             
-            
-             {/* {userNavigation}
-             {guestNavigation} */}
              
              { user?.email 
              ?userNavigation

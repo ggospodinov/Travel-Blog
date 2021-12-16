@@ -1,8 +1,6 @@
 import { useContext, useEffect} from 'react'
 import { useHistory } from "react-router-dom";
-// import { logoutUser } from '../../../../firebase';
- import { AuthContext } from "../../../../contexts/AuthContext"
-// import { getAuth } from '@firebase/auth';
+import { AuthContext } from "../../../../contexts/AuthContext"
  import * as authService from "../../../../services/authService"
  
   
@@ -12,7 +10,7 @@ import { useHistory } from "react-router-dom";
     const historyLogout = useHistory();
 
     useEffect(() => {
-        authService.logout(user.authcookie)
+        authService.logout(user['user-token'])
             .then(() => {
                 logout();
                 historyLogout.push("/")
@@ -20,21 +18,6 @@ import { useHistory } from "react-router-dom";
     }, [])
 
     return null;
-
-
-
-    //  try{
-    //    await  logoutUser()
-
-    //       historyLogout.push("/")
-       
-       
-           
-       
-    // } catch{
-    //  alert("Error!")
-
-    //  }
 
  }
 export default Logout

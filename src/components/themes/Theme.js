@@ -36,13 +36,6 @@ return(
                         <p>{themecard.text}</p>
                         <div className="post-options">
                           <div className="row">
-                            {/* <div className="col-lg-12"> */}
-                              {/* <ul className="post-tags"> */}
-                                {/* <li><i className="fa fa-tags"></i></li> */}
-                                {/* <li><a href="!#">Best Templates</a>,</li>
-                                <li><a href="!#">TemplateMo</a></li> */}
-                              {/* </ul> */}
-                            {/* </div> */}
                             <li className="button">
                               <Link className="button" to={`details/${themecard.objectId}`}><h5>Details
                               </h5></Link>

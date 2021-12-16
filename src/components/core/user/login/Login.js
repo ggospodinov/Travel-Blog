@@ -2,38 +2,16 @@ import { Link } from "react-router-dom"
 import { useHistory } from "react-router";
 import background from "./../../../../images/image1.jpg"
 import  * as authService from "../../../../services/authService"
-import { useContext,useState} from 'react';
+import { useContext} from 'react';
 import { AuthContext } from "../../../../contexts/AuthContext"
 // import {login} from "../../../../firebase"
 
 
 const Login =()=> {
-	const { loginUser } = useContext(AuthContext);
-	//  const { currentUser} = useContext(AuthContext);
-	 const [loading, setloading] = useState(false);
-	const historyLogin = useHistory()
+		const { loginUser } = useContext(AuthContext);
+		const historyLogin = useHistory()
 
-	// const emailRef = useRef();
-	// const passwordRef = useRef();
-	
-	
-	//   async function onLoginHandler(e){
-	// 	e.preventDefault();
-    //      try{
-	// 		 setloading(true);
-	// 		await login(emailRef.current.value, passwordRef.current.value)
-                
-			
-	// 		historyLogin.push("/themes");
-			 
-	// 		}catch{
-	// 			alert('Error!')
-	// 		}
-	// 		setloading(false);
-
-	// }
-
-	const onLoginHandler = (e) => {
+		const onLoginHandler = (e) => {
         e.preventDefault();
 
         let formData = new FormData(e.currentTarget);

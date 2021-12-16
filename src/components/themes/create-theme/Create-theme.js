@@ -1,12 +1,16 @@
 // import { useState } from 'react'
 import  * as servicesThemes from '../../../services/servicesThemes'
 import { AuthContext } from '../../../contexts/AuthContext'
-import { useContext, } from 'react'
+import { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import styles from './Create-theme.module.css'
 
+
 const CreateTheme =  () =>{
   const {user} = useContext(AuthContext);
+
+  
+
   const createHystory= useHistory();
 
   const onPostCreate =(e)=>{
@@ -17,6 +21,7 @@ const CreateTheme =  () =>{
     let themeName = formData.get('themeName');
     let postText = formData.get('postText');
     let imageUrl = formData.get('imageUrl');
+    let ownerId =user['ownerId']
     
     console.log(themeName);
     console.log(postText);
@@ -26,8 +31,9 @@ const CreateTheme =  () =>{
     servicesThemes.createPost({
           themeName,
           postText,
-          imageUrl
-    })
+          imageUrl,
+          ownerId
+    },user['user-token'])
     .then(result=>{createHystory.push('/themes')
 
     })
@@ -85,13 +91,6 @@ const CreateTheme =  () =>{
         <div className={styles.newthemetitle}>
           <label for="image">Image<span className="red">*</span></label>
           <input type="text" name="imageUrl" id="imageUrl" placeholder="Image" />
-          {/* <input type="file" name ="image" /> */}
-          {/* <button  >Upload</button> */}
-          </div>
-          <div>
-            {/* {images.map((image)=>(
-              <img src={image} alt=''/>
-            ))} */}
           </div>
         <div className={styles.newthemebuttons}>
           <button  type="button"  className="cancel">Cancel</button>

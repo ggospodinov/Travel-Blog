@@ -1,7 +1,9 @@
-import { useParams } from 'react-router-dom';
+import { useParams ,useHistory } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthContext'
 import { useContext, } from 'react'
 import usePostState from '../../../hooks/usePostState'; 
+import * as servicesThemes from '../../../services/servicesThemes'; 
+import Image from "../../../images/icons8-heart-16.png"
  function DetailPost()
  {
 
@@ -10,10 +12,24 @@ import usePostState from '../../../hooks/usePostState';
     const {objectId} = useParams();
     
 
-     let [theme, setTheme] = usePostState(objectId)
-     const event =  Date(theme.create_at).slice(4,25)
-    
+     let [theme] = usePostState(objectId)
+     const deleteHistory= useHistory();
 
+
+    
+     const event =  Date(theme.create_at).slice(4,25)
+   
+    const deleteHeadler =(e) =>{
+           e.preventDefault();
+           servicesThemes.destroy(objectId, user['user-token'])
+           .then(() =>{
+              deleteHistory.push('/themes')
+
+           })
+    }
+
+     const userButtons =  <li><a href="!#">Like</a></li>
+     const ownerButtons =  <li><a href="!#" onClick={deleteHeadler}>Delete</a></li>
    
 
    return(
@@ -35,7 +51,13 @@ import usePostState from '../../../hooks/usePostState';
                     <ul class="post-info">
                       <li><a href="!#">{user.email}</a></li>
                       <li><a href="!#">{event}</a></li>
-                      <li><a href="!#">10 Comments</a></li>
+                      {user.ownerId &&(user.ownerId === theme.ownerId
+                        ? ownerButtons
+                        :userButtons
+                        )}
+                          <img  src={Image} alt="" />
+                        <li>
+                        <h6>Likes: {theme.likes?.length}</h6></li>
                     </ul>
                     <p>{theme.postText}</p>
                   </div>

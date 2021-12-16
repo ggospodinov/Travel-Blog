@@ -45,7 +45,7 @@ function AllThemes(){
   
   
  
-   console.log(paginatedPosts)
+  //  console.log(paginatedPosts)
  
 
     return( 

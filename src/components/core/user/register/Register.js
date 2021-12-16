@@ -1,40 +1,11 @@
-import { useContext,useState } from 'react';
+import { useContext} from 'react';
 import { useHistory } from "react-router-dom";
-// import {signup} from "../../../../firebase"
-
-
 import * as authService from '../../../../services/authService';
 import { AuthContext } from '../../../../contexts/AuthContext'
-
 import background from "./../../../../images/image3.jpg"
 
    function Register(){
 	const historyRegister= useHistory()
-	
-
-
-	// const emailRef = useRef();
-	// const passwordRef = useRef();
-	// const usernameRef = useRef();
-
- 	// const {currentUser} = useContext(AuthContext);
-	const [loading, setloading] = useState(false);
-
-    // async function registerSubmitHandler(e){
-	// 	e.preventDefault();
-    //      try{
-	// 		 setloading(true)
-	// 		 const user =await signup(emailRef.current.value, usernameRef.current.value, passwordRef.current.value)
-	// 		 console.log(user)
-				 
-	// 			 historyRegister.push("/themes")
-			
-	// 		}catch{
-	// 			alert('Error! This email already exists')
-	// 		}
-	// 		setloading(false);
-
-	// }
 	
 	 const { loginUser } = useContext(AuthContext);
 
