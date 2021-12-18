@@ -1,13 +1,12 @@
-import { useContext} from 'react';
 import { useHistory } from "react-router-dom";
 import * as authService from '../../../../services/authService';
-import { AuthContext } from '../../../../contexts/AuthContext'
+import { useAuthContext } from '../../../../contexts/AuthContext'
 import background from "./../../../../images/image3.jpg"
 
    function Register(){
 	const historyRegister= useHistory()
 	
-	 const { loginUser } = useContext(AuthContext);
+	 const { loginUser } = useAuthContext();
 
  const registerSubmitHandler = (e) => {
         e.preventDefault();

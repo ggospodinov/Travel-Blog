@@ -24,7 +24,7 @@ function ResetTheme(){
                       </div>
                       <div className="content">
                         <ul>
-                          {posts.map((x)=>(<ResetPostCard key={x._id}   resetcard={x}/> ))}  
+                          {posts.map((x)=>(<ResetPostCard key={x.objectId}   resetcard={x}/> ))}  
                         </ul>
                       </div>
                     </div>

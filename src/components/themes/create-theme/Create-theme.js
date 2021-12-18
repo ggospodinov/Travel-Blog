@@ -1,13 +1,12 @@
 // import { useState } from 'react'
 import  * as servicesThemes from '../../../services/servicesThemes'
-import { AuthContext } from '../../../contexts/AuthContext'
-import { useContext } from 'react'
+import { useAuthContext } from '../../../contexts/AuthContext'
 import { useHistory } from 'react-router-dom'
 import styles from './Create-theme.module.css'
 
 
 const CreateTheme =  () =>{
-  const {user} = useContext(AuthContext);
+  const {user} = useAuthContext();
 
   
 

@@ -8,7 +8,7 @@ return(
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            {/* <AllThemes/> */}
+             <AllThemes/>
             <div className="col-lg-6">
                   <div className="main-button">
                     <Link to="/themes">View All Posts</Link>

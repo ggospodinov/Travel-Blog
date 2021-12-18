@@ -3,6 +3,7 @@ import ResetTheme from '../resetPost/ResetTheme';
 import {useEffect, useState} from 'react'
 import * as themesService from '../../../services/servicesThemes';
 import styles from './All-themes.module.css';
+
 // import Pagenation from '../../pagenations';
 
 
@@ -31,9 +32,13 @@ function AllThemes(){
      .then(result =>{
          setPosts(result)
                 })
+      .catch(err=>{
+         console.log(err)
+                });
 
         //  themesService.getAllThemes();        
-  },  []);
+  },  [])
+  
 
   
   
@@ -55,7 +60,7 @@ function AllThemes(){
             <div className="col-lg-8">
               <div className="all-blog-posts">
               
-                 { paginatedPosts.map((x)=>(<Theme key={x._id}   themecard={x}/> ))}
+                 { paginatedPosts.map((x)=>(<Theme key={x.objectId}   themecard={x}/> ))}
                  {/* <Posts posts={paginatedPosts}/> */}
                   {/* {allThemes.map(x => <Theme key={x._id}   themecard={x}/>)} */}
                   {/* <Pagenation postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/> */}

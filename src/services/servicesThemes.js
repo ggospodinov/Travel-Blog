@@ -1,3 +1,4 @@
+import { request } from "./requester";
  const baseUrl = 'https://stronglove.backendless.app/api/data';
 
  export const getOnePost = (objectId) => {
@@ -5,10 +6,8 @@
         .then(res => res.json())
 };
 
-export  function getAllThemes() {
-    return fetch(`${baseUrl}/theme`)
-        .then(res => res.json())
-}
+export  const getAllThemes =()=> request(`${baseUrl}/theme`)
+
 
 export const createPost =async (postData,usertoken)=>{
     let  response= await fetch(`${baseUrl}/theme`,{

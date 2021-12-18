@@ -1,12 +1,12 @@
-import { useContext, useEffect} from 'react'
+import {  useEffect} from 'react'
 import { useHistory } from "react-router-dom";
-import { AuthContext } from "../../../../contexts/AuthContext"
+import { useAuthContext } from "../../../../contexts/AuthContext"
  import * as authService from "../../../../services/authService"
  
   
  const  Logout=()=>{
      
-     const {user, logout} = useContext(AuthContext);
+     const {user, logout} = useAuthContext();
     const historyLogout = useHistory();
 
     useEffect(() => {

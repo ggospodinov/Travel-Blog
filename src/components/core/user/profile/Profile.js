@@ -1,12 +1,11 @@
-import {useContext} from "react";
  import styles from './Profile.module.css'
- import { AuthContext } from "../../../../contexts/AuthContext"
+ import { useAuthContext } from "../../../../contexts/AuthContext"
  import { FcPhone, FcBusinessman, FcAddressBook } from "react-icons/fc";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 function Profile(){
-    const { user} = useContext(AuthContext);
+    const { user} = useAuthContext();
     console.log(user)
 
     

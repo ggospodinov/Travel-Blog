@@ -1,9 +1,13 @@
 import { Link} from 'react-router-dom';
 
+
+import { useAuthContext } from '../../contexts/AuthContext';
+
 function Theme({
 
     themecard
 }){
+  const {user} = useAuthContext();
 
   const event =  Date(themecard.create_at).slice(4,25)
   console.log(event)
@@ -27,11 +31,11 @@ return(
                       </div>
                       <div className="down-content">
                         <span>{themecard.themeName}</span>
-                        <a href="post-details.html"><h4>{themecard.username}</h4></a>
+                        <a href="post-details.html"><h4>{user.email}</h4></a>
                         <ul className="post-info">
                             {/* <li>{formatter.format(Date.parse(themecard.create_at))}</li>   */}
                              <li>{event}</li>  
-                          <li>12 Comments</li>
+                          {/* <li>12 Comments</li> */}
                         </ul>
                         <p>{themecard.text}</p>
                         <div className="post-options">

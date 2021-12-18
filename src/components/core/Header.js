@@ -1,15 +1,18 @@
-import { useContext } from 'react';
+
 import { Link} from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 
 
 function Header()
 {
 
-  const {user } = useContext(AuthContext);
+  const {user } = useAuthContext();
   
     let userNavigation=(
       <>
+      <li className="nav-item">
+        <Link className="nav-link" to="/themes">Themes</Link>
+     </li>
       <li className="nav-item">
       <Link className="nav-link" to="/create-theme">New Theme</Link>
     </li>
@@ -19,6 +22,7 @@ function Header()
     <li className="nav-item">
       <Link className="nav-link" to="/logout">Logout</Link>
     </li>
+
     </>
     );
 

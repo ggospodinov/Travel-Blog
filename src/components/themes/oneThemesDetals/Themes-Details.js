@@ -1,13 +1,12 @@
 import { useParams ,useHistory } from 'react-router-dom';
-import { AuthContext } from '../../../contexts/AuthContext'
-import { useContext, } from 'react'
+import { useAuthContext} from '../../../contexts/AuthContext'
 import usePostState from '../../../hooks/usePostState'; 
 import * as servicesThemes from '../../../services/servicesThemes'; 
 import Image from "../../../images/icons8-heart-16.png"
  function DetailPost()
  {
 
-   const {user} = useContext(AuthContext);
+   const {user} = useAuthContext();
   
     const {objectId} = useParams();
     

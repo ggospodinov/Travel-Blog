@@ -2,13 +2,12 @@ import { Link } from "react-router-dom"
 import { useHistory } from "react-router";
 import background from "./../../../../images/image1.jpg"
 import  * as authService from "../../../../services/authService"
-import { useContext} from 'react';
-import { AuthContext } from "../../../../contexts/AuthContext"
+import { useAuthContext } from "../../../../contexts/AuthContext"
 // import {login} from "../../../../firebase"
 
 
 const Login =()=> {
-		const { loginUser } = useContext(AuthContext);
+		const { loginUser } = useAuthContext();
 		const historyLogin = useHistory()
 
 		const onLoginHandler = (e) => {

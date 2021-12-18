@@ -2,7 +2,7 @@
 import { Route ,Switch } from 'react-router-dom';
 import Header from "./components/core/Header";
 import Footer from "./components/core/Footer";
-import { AuthContext } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 import Home from "./components/Home";
 import AllThemes from './components/themes/all-Themes/All-themes';
 import Login from './components/core/user/login/Login';
@@ -11,44 +11,27 @@ import Theme from './components/themes/Theme'
 import CreateTheme from './components/themes/create-theme/Create-theme';
 import Profile from './components/core/user/profile/Profile';
 import Logout from './components/core/user/logout/Logout';
-import useLocalStorage from './hooks/useLocalStorage';
 import ThemesDetails from './components/themes/oneThemesDetals/Themes-Details'
 
 
 
-const initialAuthState = {
- 
-  objectId:'',
-  
- };
 
 function App() {
   
-   console.log(initialAuthState)
+   
 
   
-  const [user, setUser] = useLocalStorage('user', initialAuthState);
-
-
- console.log(user['user-token'])
-
-
-   const loginUser= (authData) => {
-    setUser(authData);
-  }
-
-  const logout = () => {
-    setUser(initialAuthState);
-  };
  
 
-  return (
- <AuthContext.Provider value={{ user,loginUser, logout}}>
+ 
 
+
+
+  return (
+
+<AuthProvider>
   <>
-    <Header/>
-     
-    
+    <Header/>    
     <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/themes"  component={AllThemes} />
@@ -58,14 +41,12 @@ function App() {
                     <Route path="/theme"  component={Theme} />
                     <Route path="/create-theme"  component={CreateTheme} />
                     <Route path="/profile"  component={Profile} />
-                    <Route path ="/details/:objectId" component={ThemesDetails} />
-
-
-                   
+                    <Route path ="/details/:objectId" component={ThemesDetails} />             
                 </Switch>
     <Footer/>
 </>
- </AuthContext.Provider >
+</AuthProvider>
+
 
   );
 }
