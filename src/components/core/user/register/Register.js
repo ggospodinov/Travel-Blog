@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import { useNotificationContext, types } from '../../../../contexts/NotificationContext';
 import * as authService from '../../../../services/authService';
 import { useAuthContext } from '../../../../contexts/AuthContext'
 import background from "./../../../../images/image3.jpg"
@@ -7,6 +8,7 @@ import background from "./../../../../images/image3.jpg"
 	const historyRegister= useHistory()
 	
 	 const { loginUser } = useAuthContext();
+	 const { addNotification } = useNotificationContext();
 
  const registerSubmitHandler = (e) => {
         e.preventDefault();
@@ -16,6 +18,7 @@ import background from "./../../../../images/image3.jpg"
         authService.register( email,username, password )   
            .then(authData => {
                loginUser(authData);
+			   addNotification('You register in successfully', types.success);
                 
                 historyRegister.push("/themes")
             });
