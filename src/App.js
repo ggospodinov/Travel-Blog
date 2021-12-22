@@ -22,6 +22,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
+
+  
   
   return (
 
@@ -37,12 +39,14 @@ function App() {
                     <Route path="/login"  component={Login} />
                     <Route path="/logout"  component={Logout}  />
                     <Route path="/register"  component={Register} />
-                    <Route path="/theme"  component={Theme} />
-                    <Route path="/create-theme"  component={CreateTheme} />
-                    <Route path="/profile"  component={Profile} />
-                    <Route path ="/details/:objectId" component={ThemesDetails} /> 
-                    <Route path ="/details/:objectId" component={CommentPost} />             
-                </Switch>
+                  
+                    <Route  path ="/details/:objectId" component={ThemesDetails}  /> 
+                    <Route  path="/theme"  component={Theme}  />
+                    <Route  path ="/details/:objectId" component={CommentPost} /> 
+                    <Route path="/create-theme"  component={CreateTheme}   />
+                    <Route  path="/profile"  component={Profile} />                         
+                  
+    </Switch>
     <Footer/>
 </>
   </NotificationProvider>

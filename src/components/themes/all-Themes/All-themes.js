@@ -23,10 +23,7 @@ function AllThemes(){
     const handleNext =()=>{
       setPageNumber(pageNumber + 1)
     }
-    // const[currentPage, setCurrentPage] = useState(1);
-  // const[postsPerPage] = useState(5);
-    
-
+  
   useEffect(() =>  {
     themesService.getAllThemes()   
      .then(result =>{
@@ -36,22 +33,8 @@ function AllThemes(){
          console.log(err)
                 });
 
-        //  themesService.getAllThemes();        
+           
   },  [])
-  
-
-  
-  
-  //  const indexOfLastPost =currentPage * postsPerPage;
-  //  const indexOfFirstPost =indexOfLastPost - postsPerPage;
-  //  const currentPosts =posts.slice(indexOfFirstPost, indexOfLastPost);
-  
-  //  const paginate = (pageNamber) => setCurrentPage(pageNamber)
-  
-  
- 
-  //  console.log(paginatedPosts)
- 
 
     return( 
       <section className="blog-posts grid-system">

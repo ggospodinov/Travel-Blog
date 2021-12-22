@@ -11,7 +11,7 @@ function Theme({
 
   
   const userEmailCreate=() => {
-    if(user.ownerId ===themecard.ownerId ){
+    if(!user.ownerId ===themecard.ownerId ){
 
       return user.email
     };

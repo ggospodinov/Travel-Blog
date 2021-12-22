@@ -1,4 +1,4 @@
-import { request } from "./requester";
+import * as request  from "./requester";
  const baseUrl = 'https://stronglove.backendless.app/api/data';
 
  export const getOnePost = (objectId) => {
@@ -6,7 +6,7 @@ import { request } from "./requester";
         .then(res => res.json())
 };
 
-export  const getAllThemes =()=> request(`${baseUrl}/theme`)
+export  const getAllThemes =()=> request.get(`${baseUrl}/theme`)
 
 
 export const createPost =async (postData,usertoken)=>{
@@ -68,6 +68,7 @@ export const createComment =async (commentData,usertoken)=>{
      return result;
 }
 
+
 export  const getComment =(usertoken)=>{
     return fetch(`${baseUrl}/comment`,{
         method: 'GET',
@@ -77,6 +78,7 @@ export  const getComment =(usertoken)=>{
             'X-Authorization': usertoken,
             
         },
+    
     })
     .then(res => res.json())
 }

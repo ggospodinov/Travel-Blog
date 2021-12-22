@@ -1,25 +1,36 @@
 import {useEffect, useState} from 'react'
 import { useAuthContext } from '../../../contexts/AuthContext'
-import { useHistory } from 'react-router-dom'
+import { useHistory,useParams } from 'react-router-dom'
 
 import  * as servicesThemes from '../../../services/servicesThemes'
 import CommentPostOne from './CommendCard'
+import usePostState from '../../../hooks/usePostState'; 
 
 function CommentPost(){
 
     const {user} = useAuthContext();
     const createHystory= useHistory();
-
+    const{objectId} =useParams();
+   
   
 
    
    
     let userlog= (user['user-token'])
+    let [theme, setTheme] = usePostState(objectId)
     const[comments,setComments]= useState([]);
-    console.log(comments)
+    
+    console.log(user.ownerId)
+    console.log(theme.objectId)
+
 
     useEffect(() =>  {
-        servicesThemes.getComment(userlog)   
+       if(theme.objectId){
+         return;
+       }
+
+      
+        servicesThemes.getComment(objectId)   
          .then(result =>{
              setComments(result)
                     })
@@ -28,10 +39,12 @@ function CommentPost(){
                     });
     
                 
-      },[])
+      },[objectId])
+console.log(comments)
     
 
   const  onCommentCreate=(e)=>{
+   
 
     e.preventDefault();
     let formData = new FormData(e.currentTarget);
@@ -41,25 +54,32 @@ function CommentPost(){
     let usersubject = formData.get('Usersubject');
     let usermessage = formData.get('Usermessage')
     let ownerId =user['ownerId']
+    let objectId =theme['objectId']
     
     console.log(userName);
     console.log(useremail);
     console.log(usersubject);
     console.log(usermessage);
-
+    
     servicesThemes.createComment({
-        userName,
-        useremail,
-        usersubject,
-        usermessage,
-        ownerId
-  },user['user-token'])
+
+         userName,
+         useremail,
+         usersubject,
+         usermessage,
+         ownerId,
+         objectId
+  })
   .then(result=>{createHystory.push(`/themes`)
 
-})
+},user['user-token'])
 formData.values = "";
   
 }
+
+
+
+// const commentMap = comments.map((x)=>(<CommentPostOne key={x.ownerId}   commentcard={x}/> ))
 
 
   
@@ -73,7 +93,7 @@ formData.values = "";
           <div className="content">
             <ul>
               <li>
-              {comments.map((x)=>(<CommentPostOne key={x.ownerId}   commentcard={x}/> ))}  
+              {comments.map((x)=>(<CommentPostOne key={x.ownerId}   commentcard={x}/> ))}
               </li>
             </ul>
           </div>
@@ -86,7 +106,7 @@ formData.values = "";
                       <h2>Your comment</h2>
                     </div>
                     <div className="content">
-                      <form   onSubmit={onCommentCreate} method="POST">
+                      <form   onSubmit={onCommentCreate} disabled={comments.includes(user.ownerId)} method="POST">
                         <div className="row">
                           <div className="col-md-6 col-sm-12">
                             <fieldset>

@@ -1,7 +1,8 @@
+import { useAuthContext} from '../../../contexts/AuthContext'
+
 import { Toast } from 'react-bootstrap';
 import { useNotificationContext } from '../../../contexts/NotificationContext';
 import './Notification.css';
-import { useAuthContext} from '../../../contexts/AuthContext'
 
 const Notification = () => {
 

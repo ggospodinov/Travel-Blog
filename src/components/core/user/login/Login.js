@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router";
-import background from "./../../../../images/image1.jpg"
-import  * as authService from "../../../../services/authService"
 import { useAuthContext } from "../../../../contexts/AuthContext"
 import { useNotificationContext, types } from '../../../../contexts/NotificationContext';
+
+import background from "./../../../../images/image1.jpg"
+import  * as authService from "../../../../services/authService"
 
 const Login =()=> {
 		const { loginUser } = useAuthContext();
@@ -28,14 +29,10 @@ const Login =()=> {
               loginUser(authData);
 			  addNotification('You logged in successfully', types.success);
 				 
-
 					 historyLogin.push("/themes");
-				 
-			
-			
+
 				})       
             .catch(err => {
-                 // TODO: show notification
                console.log(err);
            });
     }
